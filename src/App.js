@@ -9,11 +9,13 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
-    let { getLogs, logs } = this.props;
+    const { getLogs } = this.props;
     getLogs();
   }
 
   render() {
+    const { logs } = this.props;
+    console.log(logs);
     return <h1>hi</h1>;
   }
 }
