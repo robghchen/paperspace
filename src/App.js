@@ -8,7 +8,7 @@ import { getLogs } from "./actions/logActions";
 import LogsContainer from "./containers/LogsContainer";
 
 class App extends Component {
-  state = { isClicked: false }; // determines whether modal will show or hide
+  state = { showModal: false }; // determines whether modal will show or hide
 
   componentDidMount() {
     const { getLogs } = this.props;
@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     const { alerts } = this.props;
-    const { isClicked } = this.state
+    const { showModal } = this.state;
 
     return (
       <div className="app">
@@ -26,21 +26,26 @@ class App extends Component {
           src="profile-pic.jpeg"
           alt="profile pic"
           className="profile-pic pointer"
-          onClick={this.clickHandler}
+          onClick={this.showModalHandler}
         />
         <span className={alerts > 0 ? "alerts" : "hide"}>
           <strong>{alerts}</strong>
         </span>
 
-        {isClicked ? <LogsContainer clickHandler={this.clickHandler} alertsHandler={this.alertsHandler} /> : null } 
+        {showModal ? (
+          <LogsContainer
+            showModalHandler={this.showModalHandler}
+            alertsHandler={this.alertsHandler}
+          />
+        ) : null}
       </div>
     );
   }
 
-  clickHandler = () => {
-    const { isClicked } = this.state;
+  showModalHandler = () => {
+    const { showModal } = this.state;
 
-    this.setState({ isClicked: !isClicked });
+    this.setState({ showModal: !showModal });
   };
 }
 

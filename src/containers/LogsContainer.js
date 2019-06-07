@@ -6,7 +6,7 @@ import LogCard from "../components/LogCard";
 import LogInfo from "../components/LogInfo";
 
 class LogsContainer extends Component {
-  state = { isClicked: false, log: {}, clickedLogs: [] };
+  state = { isClicked: false, log: {}, clickedLogs: [] }; // isClicked determines whether to show LogCard.js or LogInfo.js
 
   componentDidMount() {
     const cookies = new Cookies();
@@ -17,12 +17,12 @@ class LogsContainer extends Component {
   }
 
   render() {
-    const { logs, clickHandler } = this.props;
+    const { logs, showModalHandler } = this.props;
     const { isClicked, log, clickedLogs } = this.state;
 
     return (
       <div className="logs-container popup">
-        <span className="close pointer" onClick={clickHandler}>
+        <span className="close pointer" onClick={showModalHandler}>
           x
         </span>
         {/* LogCard shows a preview, LogInfo shows details after clicking on LogCard */}
