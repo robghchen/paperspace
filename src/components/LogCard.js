@@ -4,10 +4,7 @@ const LogCard = props => {
   const { clickHandler, log } = props;
 
   return (
-    <div
-      className="log-card pointer"
-      onClick={() => clickHandler(log)}
-    >
+    <div className="log-card pointer" onClick={() => clickHandler(log)}>
       <span className={log.type === "Improvement" ? "type green" : "type blue"}>
         {log.type}
       </span>

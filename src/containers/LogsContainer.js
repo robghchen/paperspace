@@ -8,11 +8,14 @@ class LogsContainer extends Component {
   state = { isClicked: false, log: {}, clickedLogs: [] };
 
   render() {
-    const { logs } = this.props;
+    const { logs, clickHandler } = this.props;
     const { isClicked, log, clickedLogs } = this.state;
 
     return (
       <div className="logs-container">
+        <span className="close pointer" onClick={clickHandler}>
+          x
+        </span>
         {/* LogCard shows a preview, LogInfo shows details after clicking on LogCard */}
         {isClicked ? (
           <LogInfo

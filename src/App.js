@@ -18,6 +18,7 @@ class App extends Component {
 
   render() {
     const { alerts } = this.props;
+    const { isClicked } = this.state
 
     return (
       <div className="app">
@@ -31,7 +32,7 @@ class App extends Component {
           <strong>{alerts}</strong>
         </span>
 
-        <LogsContainer alertsHandler={this.alertsHandler} />
+        {isClicked ? <LogsContainer clickHandler={this.clickHandler} alertsHandler={this.alertsHandler} /> : null } 
       </div>
     );
   }

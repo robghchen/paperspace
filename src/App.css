@@ -35,6 +35,15 @@
   box-shadow: 3px 3px 5px 6px #ccc;
 }
 
+.close {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  color: gray;
+  margin-top: -1.5em;
+  margin-right: -1em;
+}
+
 .type {
   border-radius: 4em;
   color: white;
@@ -72,7 +81,7 @@
 
 @keyframes slideRight {
   from {
-    right: 100%;
+    right: 50%;
     opacity: 0;
   }
   to {
@@ -91,7 +100,7 @@
 
 @keyframes slideLeft {
   from {
-    left: 100%;
+    left: 50%;
     opacity: 0;
   }
   to {
