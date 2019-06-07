@@ -11,7 +11,7 @@ class LogInfo extends Component {
     const { alerts, patchAlerts, log, clickedLogs } = this.props;
     const cookies = new Cookies();
 
-    // only deduct from alerts once per notification that has been clicked
+    // only deduct from alerts the first time each log is clicked
     if (clickedLogs.filter(logId => logId === log.id).length === 1) {
       let numAlerts = cookies.get("alerts");
       numAlerts -= 1;
@@ -32,6 +32,7 @@ class LogInfo extends Component {
     const logDay = parseInt(log.date.split("/")[1]);
     let timeAgo = 0;
 
+    // determine how long ago the changelog happened
     if (year > logYear) {
       timeAgo = (year - logYear).toString();
       timeAgo = timeAgo > 1 ? timeAgo + " years ago" : timeAgo + " year ago";
@@ -46,7 +47,7 @@ class LogInfo extends Component {
     }
 
     return (
-      <React.Fragment>
+      <div className="slide-left">
         <div className="header">
           <img
             src="go-back.png"
@@ -62,7 +63,7 @@ class LogInfo extends Component {
         <hr />
         <div className="log-info-container">
           <div className="time-ago">{timeAgo}</div>
-          <div className="log-info slide-left">
+          <div className="log-info">
             <p
               className={
                 log.type === "Improvement" ? "type green" : "type blue"
@@ -77,7 +78,7 @@ class LogInfo extends Component {
             </p>
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -8,7 +8,7 @@ import { getLogs } from "./actions/logActions";
 import LogsContainer from "./containers/LogsContainer";
 
 class App extends Component {
-  state = { isClicked: false };
+  state = { isClicked: false }; // determines whether modal will show or hide
 
   componentDidMount() {
     const { getLogs } = this.props;

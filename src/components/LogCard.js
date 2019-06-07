@@ -12,6 +12,7 @@ const LogCard = props => {
   const logDay = parseInt(log.date.split("/")[1]);
   let timeAgo = 0;
 
+  // determine how long ago the changelog happened
   if (year > logYear) {
     timeAgo = (year - logYear).toString();
     timeAgo = timeAgo > 1 ? timeAgo + " years ago" : timeAgo + " year ago";

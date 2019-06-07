@@ -21,7 +21,7 @@ class LogsContainer extends Component {
     const { isClicked, log, clickedLogs } = this.state;
 
     return (
-      <div className="logs-container">
+      <div className="logs-container popup">
         <span className="close pointer" onClick={clickHandler}>
           x
         </span>
