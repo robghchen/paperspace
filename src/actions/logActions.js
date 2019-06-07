@@ -13,6 +13,7 @@ export const getLogs = () => {
       .then(data => {
         const logs = convertStringToArrayOfObjects(data);
         const cookies = new Cookies();
+        const clickedLogs = [];
 
         dispatch({
           type: LOAD_LOGS,
@@ -25,6 +26,8 @@ export const getLogs = () => {
         });
 
         cookies.set("alerts", logs.length, { path: "/" });
+
+        cookies.set("clickedLogs", clickedLogs, { path: "/" });
       })
       .catch(console.error);
   };

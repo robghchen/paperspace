@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Cookies from "universal-cookie";
 
 import LogCard from "../components/LogCard";
 import LogInfo from "../components/LogInfo";
 
 class LogsContainer extends Component {
   state = { isClicked: false, log: {}, clickedLogs: [] };
+
+  componentDidMount() {
+    const cookies = new Cookies();
+
+    this.setState({
+      clickedLogs: cookies.get("clickedLogs")
+    });
+  }
 
   render() {
     const { logs, clickHandler } = this.props;
@@ -45,12 +54,16 @@ class LogsContainer extends Component {
 
   clickHandler = log => {
     const { isClicked, clickedLogs } = this.state;
+    let clickedLogsArr = log ? [...clickedLogs, log.id] : [...clickedLogs];
+    const cookies = new Cookies();
 
     this.setState({
       isClicked: !isClicked,
       log,
-      clickedLogs: log ? [...clickedLogs, log.id] : [...clickedLogs]
+      clickedLogs: clickedLogsArr
     });
+
+    cookies.set("clickedLogs", clickedLogsArr, { path: "/" });
   };
 }
 
