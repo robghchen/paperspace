@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Cookies from "universal-cookie";
+import MDReactComponent from "markdown-react-js";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -69,7 +70,7 @@ class LogInfo extends Component {
             >
               {log.type}
             </p>
-            <p className="description">{log.description}</p>
+            <MDReactComponent className="description" text={log.description} />
             <img src={log.image_url} alt={log.title} className="image" />
             <p className="link">
               <strong>Read the whole post</strong>
