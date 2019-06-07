@@ -170,3 +170,18 @@
   background: red;
   padding: 0.2em;
 }
+
+@media (max-width: 900px) {
+  .logs-container {
+    top: 5em;
+    margin: 2em;
+  }
+
+  .time-ago {
+    min-width: 3em;
+  }
+
+  .log-info img {
+    max-width: 100%;
+  }
+}
