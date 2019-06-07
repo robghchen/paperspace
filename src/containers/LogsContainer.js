@@ -13,10 +13,6 @@ class LogsContainer extends Component {
 
     return (
       <div className="logs-container">
-        <div className={isClicked ? "center hide" : "center"}>
-          <h3>Latest changes</h3>
-          <hr />
-        </div>
         {/* LogCard shows a preview, LogInfo shows details after clicking on LogCard */}
         {isClicked ? (
           <LogInfo
@@ -26,9 +22,19 @@ class LogsContainer extends Component {
             clickedLogs={clickedLogs}
           />
         ) : (
-          logs.map(log => (
-            <LogCard key={log.id} log={log} clickHandler={this.clickHandler} />
-          ))
+          <div className="slide-right">
+            <div className={isClicked ? "center hide" : "center"}>
+              <h3>Latest changes</h3>
+              <hr />
+            </div>
+            {logs.map(log => (
+              <LogCard
+                key={log.id}
+                log={log}
+                clickHandler={this.clickHandler}
+              />
+            ))}
+          </div>
         )}
       </div>
     );

@@ -23,7 +23,7 @@ class LogInfo extends Component {
   render() {
     const { clickHandler, log } = this.props;
     return (
-      <div className="log-info">
+      <div className="log-info slide-left">
         <div className="header">
           <img
             src="go-back.png"
