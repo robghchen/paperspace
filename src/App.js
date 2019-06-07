@@ -20,11 +20,11 @@ class App extends Component {
     const { isClicked } = this.state;
 
     return (
-      <div>
+      <div className="app">
         <img
-          src="profile.jpg"
+          src="profile-pic.jpeg"
           alt="profile pic"
-          className="pointer"
+          className="profile-pic pointer"
           onClick={this.clickHandler}
         />
 

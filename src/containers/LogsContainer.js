@@ -13,14 +13,16 @@ class LogsContainer extends Component {
 
     return (
       <div className="logs-container">
-        <h3>Latest changes</h3>
+        <div className={isClicked ? "center hide" : "center"}>
+          <h3>Latest changes</h3>
+          <hr />
+        </div>
         {isClicked ? (
           <LogInfo key={log.id} log={log} clickHandler={this.clickHandler} />
         ) : (
           logs.map(log => (
-            <div className="log-card" onClick={() => this.clickHandler(log)}>
-              <LogCard key={log.id} log={log} />
-            </div>
+            
+              <LogCard key={log.id} log={log} clickHandler={this.clickHandler} />
           ))
         )}
       </div>
@@ -29,7 +31,6 @@ class LogsContainer extends Component {
 
   clickHandler = log => {
     const { isClicked } = this.state;
-    console.log("hi", log);
 
     this.setState({
       isClicked: !isClicked,

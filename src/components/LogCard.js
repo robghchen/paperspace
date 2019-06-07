@@ -1,16 +1,25 @@
 import React from "react";
 
 const LogCard = props => {
-  const { log } = props;
+  const { clickHandler, log } = props;
 
   return (
-    <React.Fragment>
-      <span className="type">{log.type} </span>
-      <span className="title">
-        <strong>{log.title}. </strong>
+    <div className="log-card pointer" onClick={() => clickHandler(log)}>
+      <span className={log.type === "Improvement" ? "type green" : "type blue"}>
+        {log.type}
       </span>
-      <span className="description">{log.description}</span>
-    </React.Fragment>
+      <span className="title">
+        <strong> {log.title}. </strong>
+      </span>
+      <span className="description">
+        {log.description.split(" ").length <= 18
+          ? log.description
+          : log.description
+              .split(" ")
+              .slice(0, 18)
+              .join(" ") + "..."}
+      </span>
+    </div>
   );
 };
 

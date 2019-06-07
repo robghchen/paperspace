@@ -5,19 +5,26 @@ class LogInfo extends Component {
     const { clickHandler, log } = this.props;
     return (
       <div className="log-info">
-        <img
-          src="goback.png"
-          alt="go back"
-          className="point"
-          onClick={() => clickHandler({})}
-        />
-        <span className="title">
-          <strong>{log.title}</strong>
-        </span>
-        <p className="type">{log.type}</p>
+        <div className="header">
+          <img
+            src="go-back.png"
+            alt="go back"
+            className="go-back pointer"
+            onClick={() => clickHandler({})}
+          />
+          <span className="title">
+            <h3>{log.title}</h3>
+          </span>
+        </div>
+
+        <hr />
+
+        <p className={log.type === "Improvement" ? "type green" : "type blue"}>
+          {log.type}
+        </p>
         <p className="description">{log.description}</p>
         <img src={log.image_url} alt={log.title} className="image" />
-        <p>
+        <p className="link">
           <strong>Read the whole post</strong>
         </p>
       </div>
