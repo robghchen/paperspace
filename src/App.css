@@ -63,7 +63,23 @@
   color: rgb(13, 168, 235);
 }
 
+.log-card-container,
+.log-info-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.time-ago {
+  order: 1;
+  padding-top: 2em;
+  padding-right: 2em;
+  font-size: 0.8em;
+  color: gray;
+  min-width: 5em;
+}
+
 .log-card {
+  order: 2;
   padding-top: 1em;
 }
 
@@ -109,11 +125,15 @@
   }
 }
 
-.log-info .header {
+.log-info {
+  order: 2;
+}
+
+.header {
   display: flex;
 }
 
-.log-info .title {
+.title {
   margin: auto;
 }
 

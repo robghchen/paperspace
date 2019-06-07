@@ -22,8 +22,30 @@ class LogInfo extends Component {
 
   render() {
     const { clickHandler, log } = this.props;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const logYear = parseInt(log.date.split("/")[2]);
+    const logMonth = parseInt(log.date.split("/")[0]);
+    const logDay = parseInt(log.date.split("/")[1]);
+    let timeAgo = 0;
+
+    if (year > logYear) {
+      timeAgo = (year - logYear).toString();
+      timeAgo = timeAgo > 1 ? timeAgo + " years ago" : timeAgo + " year ago";
+    } else if (month > logMonth) {
+      timeAgo = (month - logMonth).toString();
+      timeAgo = timeAgo > 1 ? timeAgo + " months ago" : timeAgo + " month ago";
+    } else if (day > logDay) {
+      timeAgo = (day - logDay).toString();
+      timeAgo = timeAgo > 1 ? timeAgo + " days ago" : timeAgo + " day ago";
+    } else {
+      timeAgo = "today";
+    }
+
     return (
-      <div className="log-info slide-left">
+      <React.Fragment>
         <div className="header">
           <img
             src="go-back.png"
@@ -37,16 +59,24 @@ class LogInfo extends Component {
         </div>
 
         <hr />
-
-        <p className={log.type === "Improvement" ? "type green" : "type blue"}>
-          {log.type}
-        </p>
-        <p className="description">{log.description}</p>
-        <img src={log.image_url} alt={log.title} className="image" />
-        <p className="link">
-          <strong>Read the whole post</strong>
-        </p>
-      </div>
+        <div className="log-info-container">
+          <div className="time-ago">{timeAgo}</div>
+          <div className="log-info slide-left">
+            <p
+              className={
+                log.type === "Improvement" ? "type green" : "type blue"
+              }
+            >
+              {log.type}
+            </p>
+            <p className="description">{log.description}</p>
+            <img src={log.image_url} alt={log.title} className="image" />
+            <p className="link">
+              <strong>Read the whole post</strong>
+            </p>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
