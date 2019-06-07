@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   render() {
-    const { isClicked } = this.state;
+    const { alerts } = this.props;
 
     return (
       <div className="app">
@@ -27,8 +27,11 @@ class App extends Component {
           className="profile-pic pointer"
           onClick={this.clickHandler}
         />
+        <span className={alerts > 0 ? "alerts" : "hide"}>
+          <strong>{alerts}</strong>
+        </span>
 
-        {isClicked ? <LogsContainer /> : null}
+        <LogsContainer alertsHandler={this.alertsHandler} />
       </div>
     );
   }
@@ -41,7 +44,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { logs: state.logs };
+  return { logs: state.logs, alerts: state.alerts };
 };
 
 const mapDispatchToProps = dispatch => {

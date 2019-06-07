@@ -1,6 +1,25 @@
 import React, { Component } from "react";
+import Cookies from "universal-cookie";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { patchAlerts } from "../actions/logActions";
 
 class LogInfo extends Component {
+  componentDidMount() {
+    const { alerts, patchAlerts, log, clickedLogs } = this.props;
+    const cookies = new Cookies();
+
+    // only deduct from alerts once per notification that has been clicked
+    if (clickedLogs.filter(logId => logId === log.id).length === 1) {
+      let numAlerts = cookies.get("alerts");
+      numAlerts -= 1;
+      cookies.set("alerts", numAlerts, { path: "/" });
+
+      patchAlerts(alerts);
+    }
+  }
+
   render() {
     const { clickHandler, log } = this.props;
     return (
@@ -10,7 +29,7 @@ class LogInfo extends Component {
             src="go-back.png"
             alt="go back"
             className="go-back pointer"
-            onClick={() => clickHandler({})}
+            onClick={() => clickHandler(null)}
           />
           <span className="title">
             <h3>{log.title}</h3>
@@ -32,4 +51,15 @@ class LogInfo extends Component {
   }
 }
 
-export default LogInfo;
+const mapStateToProps = state => {
+  return { alerts: state.alerts };
+};
+
+const mapDispatchToProps = dispatch => {
+  return { patchAlerts: bindActionCreators(patchAlerts, dispatch) };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogInfo);

@@ -1,4 +1,8 @@
+import Cookies from "universal-cookie";
+
 export const LOAD_LOGS = "LOAD_LOGS";
+export const LOAD_ALERTS = "LOAD_ALERTS";
+export const UPDATE_ALERTS = "UPDATE_ALERTS";
 
 export const getLogs = () => {
   return dispatch => {
@@ -8,11 +12,19 @@ export const getLogs = () => {
       .then(res => res.json())
       .then(data => {
         const logs = convertStringToArrayOfObjects(data);
+        const cookies = new Cookies();
 
         dispatch({
           type: LOAD_LOGS,
           payload: logs
         });
+
+        dispatch({
+          type: LOAD_ALERTS,
+          payload: logs.length
+        });
+
+        cookies.set("alerts", logs.length, { path: "/" });
       })
       .catch(console.error);
   };
@@ -74,4 +86,13 @@ const convertStringToArrayOfObjects = data => {
   }
 
   return logs;
+};
+
+export const patchAlerts = alerts => {
+  return dispatch => {
+    dispatch({
+      type: UPDATE_ALERTS,
+      payload: alerts - 1
+    });
+  };
 };
