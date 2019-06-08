@@ -44,6 +44,7 @@ class LogsContainer extends Component {
                 key={log.id}
                 log={log}
                 clickHandler={this.clickHandler}
+                clickedLogs={clickedLogs}
               />
             ))}
           </div>

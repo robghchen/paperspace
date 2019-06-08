@@ -74,6 +74,10 @@
   background-color: blue;
 }
 
+.gray {
+  color: gray;
+}
+
 .link {
   color: rgb(13, 168, 235);
 }

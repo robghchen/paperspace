@@ -2,7 +2,7 @@ import React from "react";
 import MDReactComponent from "markdown-react-js";
 
 const LogCard = props => {
-  const { clickHandler, log } = props;
+  const { clickHandler, log, clickedLogs } = props;
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
@@ -27,7 +27,13 @@ const LogCard = props => {
   }
 
   return (
-    <div className="log-card-container">
+    <div
+      className={
+        clickedLogs.includes(log.id)
+          ? "log-card-container gray"
+          : "log-card-container"
+      }
+    >
       <div className="time-ago">{timeAgo}</div>
       <div className="log-card pointer" onClick={() => clickHandler(log)}>
         <span
