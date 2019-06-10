@@ -19,7 +19,6 @@ class LogsContainer extends Component {
   render() {
     const { logs, showModalHandler } = this.props;
     const { isClicked, log, clickedLogs } = this.state;
-
     return (
       <div className="logs-container popup">
         <span className="close pointer" onClick={showModalHandler}>

@@ -4,7 +4,7 @@ import MDReactComponent from "markdown-react-js";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { patchAlerts } from "../actions/logActions";
+import { patchAlerts } from "../actions";
 
 class LogInfo extends Component {
   componentDidMount() {

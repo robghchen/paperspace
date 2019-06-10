@@ -3,7 +3,7 @@ import "./App.css";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getLogs } from "./actions/logActions";
+import { getLogs } from "./actions";
 
 import LogsContainer from "./containers/LogsContainer";
 

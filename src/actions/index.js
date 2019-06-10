@@ -1,8 +1,6 @@
 import Cookies from "universal-cookie";
 
-export const LOAD_LOGS = "LOAD_LOGS";
-export const LOAD_ALERTS = "LOAD_ALERTS";
-export const UPDATE_ALERTS = "UPDATE_ALERTS";
+import * as types from "../constants/ActionTypes";
 
 export const getLogs = () => {
   return dispatch => {
@@ -16,12 +14,12 @@ export const getLogs = () => {
         const clickedLogs = [];
 
         dispatch({
-          type: LOAD_LOGS,
+          type: types.LOAD_LOGS,
           payload: logs
         });
 
         dispatch({
-          type: LOAD_ALERTS,
+          type: types.LOAD_ALERTS,
           payload: logs.length
         });
 
@@ -94,7 +92,7 @@ const convertStringToArrayOfObjects = data => {
 export const patchAlerts = alerts => {
   return dispatch => {
     dispatch({
-      type: UPDATE_ALERTS,
+      type: types.UPDATE_ALERTS,
       payload: alerts - 1
     });
   };
