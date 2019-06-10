@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Cookies from "universal-cookie";
 
+import { cookies } from "../utils/cookies";
 import LogCard from "../components/LogCard";
 import LogInfo from "../components/LogInfo";
 
@@ -9,7 +9,6 @@ class LogsContainer extends Component {
   state = { isClicked: false, log: {}, clickedLogs: [] }; // isClicked determines whether to show LogCard.js or LogInfo.js
 
   componentDidMount() {
-    const cookies = new Cookies();
 
     this.setState({
       clickedLogs: cookies.get("clickedLogs")
@@ -55,7 +54,6 @@ class LogsContainer extends Component {
   clickHandler = log => {
     const { isClicked, clickedLogs } = this.state;
     let clickedLogsArr = log ? [...clickedLogs, log.id] : [...clickedLogs];
-    const cookies = new Cookies();
 
     this.setState({
       isClicked: !isClicked,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Cookies from "universal-cookie";
+import { cookies } from "../utils/cookies";
 import MDReactComponent from "markdown-react-js";
 
 import { connect } from "react-redux";
@@ -9,7 +9,6 @@ import { patchAlerts } from "../actions";
 class LogInfo extends Component {
   componentDidMount() {
     const { alerts, patchAlerts, log, clickedLogs } = this.props;
-    const cookies = new Cookies();
 
     // only deduct from alerts the first time each log is clicked
     if (clickedLogs.filter(logId => logId === log.id).length === 1) {

@@ -1,5 +1,4 @@
-import Cookies from "universal-cookie";
-
+import { cookies } from "../utils/cookies";
 import * as types from "../constants/ActionTypes";
 
 export const getLogs = () => {
@@ -10,7 +9,6 @@ export const getLogs = () => {
       .then(res => res.json())
       .then(data => {
         const logs = convertStringToArrayOfObjects(data);
-        const cookies = new Cookies();
         const clickedLogs = [];
 
         dispatch({
