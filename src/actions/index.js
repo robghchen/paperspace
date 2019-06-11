@@ -9,7 +9,12 @@ export const getLogs = () => {
       .then(res => res.json())
       .then(data => {
         const logs = convertStringToArrayOfObjects(data);
-        const clickedLogs = [];
+        let clickedLogs = cookies.get("clickedLogs")
+          ? cookies.get("clickedLogs")
+          : [];
+        let alerts = cookies.get("alerts")
+          ? cookies.get("alerts")
+          : logs.length;
 
         dispatch({
           type: types.LOAD_LOGS,
@@ -18,10 +23,10 @@ export const getLogs = () => {
 
         dispatch({
           type: types.LOAD_ALERTS,
-          payload: logs.length
+          payload: alerts
         });
 
-        cookies.set("alerts", logs.length, { path: "/" });
+        cookies.set("alerts", alerts, { path: "/" });
 
         cookies.set("clickedLogs", clickedLogs, { path: "/" });
       })
